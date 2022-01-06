@@ -47,15 +47,15 @@ namespace MemeFlytext
 			if (ImGui.Begin("Meme Flytext Config", ref settingsVisible, ImGuiWindowFlags.AlwaysVerticalScrollbar))
 			{
 
-				if (ImGui.Checkbox("Enable Desquished Damage", ref configuration.DesquishDamageEnabled))
+				if (ImGui.Checkbox("Enable Desquished flytext", ref configuration.DesquishDamageEnabled))
 				{
 					configuration.Save();
 				}
-				if (ImGui.Checkbox("Enable All Damage is Zero", ref configuration.ZeroDamageEnabled))
+				if (ImGui.Checkbox("Enable All flytext is Zero", ref configuration.ZeroDamageEnabled))
 				{
 					configuration.Save();
 				}
-				if (ImGui.Checkbox("Enable Crazy Random Damage", ref configuration.CrazyDamageEnabled))
+				if (ImGui.Checkbox("Enable Crazy Random flytext", ref configuration.CrazyDamageEnabled))
 				{
 					configuration.Save();
 				}
