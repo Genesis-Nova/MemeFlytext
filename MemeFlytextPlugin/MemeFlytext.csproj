@@ -3,8 +3,9 @@
     <TargetFramework>net5.0-windows</TargetFramework>
     <LangVersion>preview</LangVersion>
     <AssemblyTitle>MemeFlytext</AssemblyTitle>
+	  <AssemblyVersion>0.9.0.0</AssemblyVersion>
     <Product>MemeFlytext</Product>
-    <Description>Configurable UI options for damage. /dmginfo displays the UI.</Description>
+    <Description>Configure flytext with varying meme effects. /pmeme displays the UI.</Description>
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
@@ -45,9 +46,6 @@
       <HintPath>$(AppData)\XIVLauncher\addon\Hooks\dev\Lumina.Excel.dll</HintPath>
       <Private>False</Private>
     </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="MemeFlytext.yaml" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="DalamudPackager" Version="2.1.5" />

@@ -40,9 +40,7 @@ namespace MemeFlytext
 
         private readonly Configuration _configuration;
         private readonly PluginUI _ui;
-        public bool Desquish = false;
-        public bool Zero = false;
-        public bool Crazy = false;
+
         private readonly GameGui _gameGui;
         private readonly DalamudPluginInterface _pi;
         private readonly CommandManager _cmdMgr;
@@ -262,13 +260,13 @@ namespace MemeFlytext
         {
             try
             {
-                if (Desquish)
+                if (_configuration.DesquishDamageEnabled)
                     val1 = MakeDamageDesquish(val1);
 
-                if (Zero)
+                if (_configuration.ZeroDamageEnabled)
                     val1 = MakeDamageZero(val1);
 
-                if (Crazy)
+                if (_configuration.CrazyDamageEnabled)
                     val1 = MakeDamageCrazy(val1);
 
                 var ftKind = kind;
