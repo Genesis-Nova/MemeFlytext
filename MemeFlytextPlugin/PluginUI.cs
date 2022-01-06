@@ -48,8 +48,22 @@ namespace MemeFlytext
 			{
 
 				// local copies of config properties
+				var DesquishDamageConfigValue = configuration.DesquishDamageEnabled;
+				var ZeroDamageConfigValue = configuration.ZeroDamageEnabled;
 				var CrazyDamageConfigValue = configuration.CrazyDamageEnabled;
 
+				if (ImGui.Checkbox("Enable Desquished Damage", ref DesquishDamageConfigValue))
+				{
+					memeFlytextPlugin.Desquish = DesquishDamageConfigValue;
+					configuration.DesquishDamageEnabled = DesquishDamageConfigValue;
+					configuration.Save();
+				}
+				if (ImGui.Checkbox("Enable All Damage is Zero", ref ZeroDamageConfigValue))
+				{
+					memeFlytextPlugin.Zero = ZeroDamageConfigValue;
+					configuration.ZeroDamageEnabled = ZeroDamageConfigValue;
+					configuration.Save();
+				}
 				if (ImGui.Checkbox("Enable Crazy Random Damage", ref CrazyDamageConfigValue))
 				{
 					memeFlytextPlugin.Crazy = CrazyDamageConfigValue;

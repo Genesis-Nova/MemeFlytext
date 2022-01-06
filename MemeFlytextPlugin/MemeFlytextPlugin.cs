@@ -40,6 +40,8 @@ namespace MemeFlytext
 
         private readonly Configuration _configuration;
         private readonly PluginUI _ui;
+        public bool Desquish { get; set; }
+        public bool Zero { get; set; }
         public bool Crazy { get; set; }
         private readonly GameGui _gameGui;
         private readonly DalamudPluginInterface _pi;
@@ -96,7 +98,7 @@ namespace MemeFlytext
 
             cmdMgr.AddHandler(CommandName, new CommandInfo(OnCommand)
             {
-                HelpMessage = "Display the Damage Info configuration interface."
+                HelpMessage = "Display the Meme Flytext configuration interface."
             });
 
             try
@@ -111,7 +113,7 @@ namespace MemeFlytext
             }
             catch (Exception ex)
             {
-                PluginLog.Information($"Encountered an error loading DamageInfoPlugin: {ex.Message}");
+                PluginLog.Information($"Encountered an error loading MemeFlytext: {ex.Message}");
                 PluginLog.Information("Plugin will not be loaded.");
                 
                 _writeFlyTextHook?.Disable();
@@ -225,7 +227,7 @@ namespace MemeFlytext
             }
             catch (Exception e)
             {
-                PluginLog.Error(e, "An error occurred in Damage Info.");
+                PluginLog.Error(e, "An error occurred in meme flytext.");
             }
         }
 
@@ -242,7 +244,7 @@ namespace MemeFlytext
 
             catch (Exception e)
             {
-                PluginLog.Error(e, "An error occurred in Damage Info.");
+                PluginLog.Error(e, "An error occurred in meme flytext.");
             }
             return result;
         }
@@ -260,8 +262,14 @@ namespace MemeFlytext
         {
             try
             {
+                if (Desquish)
+                    val1 = MakeDamageDesquish(val1);
+
+                if (Zero)
+                    val1 = MakeDamageZero(val1);
+
                 if (Crazy)
-                    val1 = MakeDamageRandom(val1);
+                    val1 = MakeDamageCrazy(val1);
 
                 var ftKind = kind;
                 var ftVal1 = val1;
@@ -280,7 +288,19 @@ namespace MemeFlytext
             }
         }
 
-        public int MakeDamageRandom(int originalDamage)
+        public int MakeDamageDesquish(int originalDamage)
+        {
+            var newDamage = originalDamage * 5;
+            return newDamage;
+        }
+
+        public int MakeDamageZero(int originalDamage)
+        {
+            var newDamage = originalDamage * 0;
+            return newDamage;
+        }
+
+        public int MakeDamageCrazy(int originalDamage)
         {
             var rand = new Random();
             var newDamage = rand.Next(int.MinValue, int.MaxValue);
