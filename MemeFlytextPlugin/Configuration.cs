@@ -9,9 +9,9 @@ namespace MemeFlytext
     public class Configuration : IPluginConfiguration
     {
         public int Version { get; set; } = 0;
-        public bool DesquishDamageEnabled { get; set; } = false;
-        public bool ZeroDamageEnabled { get; set; } = false;
-        public bool CrazyDamageEnabled { get; set; } = false;
+        public bool DesquishDamageEnabled = false;
+        public bool ZeroDamageEnabled = false;
+        public bool CrazyDamageEnabled = false;
 
         [NonSerialized]
         private DalamudPluginInterface pluginInterface;

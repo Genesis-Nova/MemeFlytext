@@ -40,9 +40,9 @@ namespace MemeFlytext
 
         private readonly Configuration _configuration;
         private readonly PluginUI _ui;
-        public bool Desquish { get; set; }
-        public bool Zero { get; set; }
-        public bool Crazy { get; set; }
+        public bool Desquish = false;
+        public bool Zero = false;
+        public bool Crazy = false;
         private readonly GameGui _gameGui;
         private readonly DalamudPluginInterface _pi;
         private readonly CommandManager _cmdMgr;
@@ -50,7 +50,7 @@ namespace MemeFlytext
         private readonly ObjectTable _objectTable;
         private readonly ClientState _clientState;
         private readonly TargetManager _targetManager;
-        
+
         private delegate void AddScreenLogDelegate(
             FFXIVClientStructs.FFXIV.Client.Game.Character.Character* target,
             FFXIVClientStructs.FFXIV.Client.Game.Character.Character* source,
@@ -102,20 +102,20 @@ namespace MemeFlytext
             });
 
             try
-            { 
+            {
                 var writeFtPtr = scanner.ScanText("E8 ?? ?? ?? ?? 83 F8 01 75 45");
-                _writeFlyTextHook = new Hook<WriteFlyTextDataDelegate>(writeFtPtr, (WriteFlyTextDataDelegate) WriteFlyTextDataDetour);
+                _writeFlyTextHook = new Hook<WriteFlyTextDataDelegate>(writeFtPtr, (WriteFlyTextDataDelegate)WriteFlyTextDataDetour);
 
                 var addScreenLogPtr = scanner.ScanText("E8 ?? ?? ?? ?? BB ?? ?? ?? ?? EB 37");
-                _addScreenLogHook = new Hook<AddScreenLogDelegate>(addScreenLogPtr, (AddScreenLogDelegate) AddScreenLogDetour);
-                
+                _addScreenLogHook = new Hook<AddScreenLogDelegate>(addScreenLogPtr, (AddScreenLogDelegate)AddScreenLogDetour);
+
                 ftGui.FlyTextCreated += OnFlyTextCreated;
             }
             catch (Exception ex)
             {
                 PluginLog.Information($"Encountered an error loading MemeFlytext: {ex.Message}");
                 PluginLog.Information("Plugin will not be loaded.");
-                
+
                 _writeFlyTextHook?.Disable();
                 _writeFlyTextHook?.Dispose();
                 _addScreenLogHook?.Disable();
@@ -212,17 +212,17 @@ namespace MemeFlytext
             {
                 var targetId = target->GameObject.ObjectID;
                 var sourceId = source->GameObject.ObjectID;
-            
+
                 var action = new ScreenLogInfo
                 {
-                    actionId = (uint) actionId,
+                    actionId = (uint)actionId,
                     kind = logKind,
                     sourceId = sourceId,
                     targetId = targetId,
                     value = val1,
                 };
 
-                _actions.Add(action);            
+                _actions.Add(action);
                 _addScreenLogHook.Original(target, source, logKind, option, actionKind, actionId, val1, val2, val3, val4);
             }
             catch (Exception e)
@@ -236,10 +236,10 @@ namespace MemeFlytext
             var result = _writeFlyTextHook.Original(a1, numberArray, numberArrayIndex, a4, a5, ftData, a7, a8);
 
             if (numberArray == null || ftData == null) return result;
-            if ((uint) numberArray->IntArray[numberArrayIndex + 5] != 0xFF0061E3) return result;
-            
+            if ((uint)numberArray->IntArray[numberArrayIndex + 5] != 0xFF0061E3) return result;
+
             try
-            { 
+            {
             }
 
             catch (Exception e)
