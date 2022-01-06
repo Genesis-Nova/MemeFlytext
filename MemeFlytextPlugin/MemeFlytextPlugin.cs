@@ -40,7 +40,7 @@ namespace MemeFlytext
 
         private readonly Configuration _configuration;
         private readonly PluginUI _ui;
-        public bool Crazy { get; set; } = true;
+        public bool Crazy { get; set; }
         private readonly GameGui _gameGui;
         private readonly DalamudPluginInterface _pi;
         private readonly CommandManager _cmdMgr;
