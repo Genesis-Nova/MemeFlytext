@@ -1,0 +1,10 @@
+C:\Users\Austen\Desktop\DamageInfoPlugin\DamageInfoPlugin\obj\Debug\DamageInfoPlugin.csproj.AssemblyReference.cache
+C:\Users\Austen\Desktop\DamageInfoPlugin\DamageInfoPlugin\obj\Debug\DamageInfoPlugin.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Austen\Desktop\DamageInfoPlugin\DamageInfoPlugin\obj\Debug\DamageInfoPlugin.AssemblyInfoInputs.cache
+C:\Users\Austen\Desktop\DamageInfoPlugin\DamageInfoPlugin\obj\Debug\DamageInfoPlugin.AssemblyInfo.cs
+C:\Users\Austen\Desktop\DamageInfoPlugin\DamageInfoPlugin\obj\Debug\DamageInfoPlugin.csproj.CoreCompileInputs.cache
+C:\Users\Austen\Desktop\DamageInfoPlugin\DamageInfoPlugin\bin\Debug\DamageInfoPlugin.deps.json
+C:\Users\Austen\Desktop\DamageInfoPlugin\DamageInfoPlugin\bin\Debug\DamageInfoPlugin.dll
+C:\Users\Austen\Desktop\DamageInfoPlugin\DamageInfoPlugin\bin\Debug\DamageInfoPlugin.pdb
+C:\Users\Austen\Desktop\DamageInfoPlugin\DamageInfoPlugin\obj\Debug\DamageInfoPlugin.dll
+C:\Users\Austen\Desktop\DamageInfoPlugin\DamageInfoPlugin\obj\Debug\DamageInfoPlugin.pdb
