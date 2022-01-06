@@ -43,28 +43,19 @@ namespace MemeFlytext
 		{
 			if (!SettingsVisible) return;
 
-			ImGui.SetNextWindowSize(new Vector2(400, 500), ImGuiCond.FirstUseEver);
+			ImGui.SetNextWindowSize(new Vector2(300, 400), ImGuiCond.FirstUseEver);
 			if (ImGui.Begin("Meme Flytext Config", ref settingsVisible, ImGuiWindowFlags.AlwaysVerticalScrollbar))
 			{
 
 				// local copies of config properties
-				var debugLogConfigValue = configuration.DebugLogEnabled;
 				var CrazyDamageConfigValue = configuration.CrazyDamageEnabled;
 
 				if (ImGui.Checkbox("Enable Crazy Random Damage", ref CrazyDamageConfigValue))
 				{
+					memeFlytextPlugin.Crazy = CrazyDamageConfigValue;
 					configuration.CrazyDamageEnabled = CrazyDamageConfigValue;
 					configuration.Save();
 				}
-
-				if (ImGui.CollapsingHeader("Debug"))
-					{
-						if (ImGui.Checkbox("Enable Debug Logging", ref debugLogConfigValue))
-						{
-							configuration.DebugLogEnabled = debugLogConfigValue;
-							configuration.Save();
-						}
-					}
 				ImGui.End();
 			}
 		}

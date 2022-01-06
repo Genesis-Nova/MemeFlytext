@@ -9,8 +9,7 @@ namespace MemeFlytext
     public class Configuration : IPluginConfiguration
     {
         public int Version { get; set; } = 0;
-        public bool CrazyDamageEnabled { get; set; } = false;
-        public bool DebugLogEnabled { get; set; } = false;
+        public bool CrazyDamageEnabled { get; set; }
         
         [NonSerialized]
         private DalamudPluginInterface pluginInterface;

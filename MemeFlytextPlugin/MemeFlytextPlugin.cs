@@ -211,16 +211,6 @@ namespace MemeFlytext
                 var targetId = target->GameObject.ObjectID;
                 var sourceId = source->GameObject.ObjectID;
             
-                if (_configuration.DebugLogEnabled)
-                {
-                    DebugLog(LogType.ScreenLog, $"{option} {actionKind} {actionId}");
-                    DebugLog(LogType.ScreenLog, $"{val1} {val2} {val3} {val4}");
-                    var targetName = GetName(targetId);
-                    var sourceName  = GetName(sourceId);
-                    DebugLog(LogType.ScreenLog, $"src {sourceId} {sourceName}");
-                    DebugLog(LogType.ScreenLog, $"tgt {targetId} {targetName}");    
-                }
-            
                 var action = new ScreenLogInfo
                 {
                     actionId = (uint) actionId,
@@ -230,9 +220,7 @@ namespace MemeFlytext
                     value = val1,
                 };
 
-                _actions.Add(action);
-                DebugLog(LogType.ScreenLog, $"added action: {action}");
-            
+                _actions.Add(action);            
                 _addScreenLogHook.Original(target, source, logKind, option, actionKind, actionId, val1, val2, val3, val4);
             }
             catch (Exception e)
@@ -272,14 +260,6 @@ namespace MemeFlytext
         {
             try
             {
-                if (_configuration.DebugLogEnabled)
-                {
-                    var str1 = text1?.TextValue.Replace("%", "%%");
-                    var str2 = text2?.TextValue.Replace("%", "%%");
-
-                    DebugLog(LogType.FlyText, $"kind: {kind} ({(int)kind}), val1: {val1}, val2: {val2}, color: {color:X}, icon: {icon}");
-                    DebugLog(LogType.FlyText, $"text1: {str1} | text2: {str2}");
-                }
                 if (Crazy)
                     val1 = MakeDamageRandom(val1);
 
@@ -291,8 +271,6 @@ namespace MemeFlytext
 
                 if (!_actions.Remove(action))
                 {
-                    DebugLog(LogType.FlyText, $"action not found!");
-                    DebugLog(LogType.FlyText, $"we wanted an action with kind: {ftKind} value: {ftVal1} charaId: {charaId} (0x{charaId:X}) petIds: {string.Join(", ", petIds)}");
                     return;
                 }
             }
@@ -354,12 +332,6 @@ namespace MemeFlytext
         private SeString GetName(uint id)
         {
             return _objectTable.SearchById(id)?.Name ?? SeString.Empty;
-        }
-
-        private void DebugLog(LogType type, string str)
-        {
-            if (_configuration.DebugLogEnabled)
-                PluginLog.Information($"[{type}] {str}");
         }
     }
 }
