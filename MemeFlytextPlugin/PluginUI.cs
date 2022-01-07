@@ -43,7 +43,7 @@ namespace MemeFlytext
 		{
 			if (!SettingsVisible) return;
 
-			ImGui.SetNextWindowSize(new Vector2(300, 400), ImGuiCond.FirstUseEver);
+			ImGui.SetNextWindowSize(new Vector2(400, 200), ImGuiCond.FirstUseEver);
 			if (ImGui.Begin("Meme Flytext Config", ref settingsVisible))
 			{
 
