@@ -3,13 +3,14 @@
     <TargetFramework>net5.0-windows</TargetFramework>
     <LangVersion>preview</LangVersion>
     <AssemblyTitle>MemeFlytext</AssemblyTitle>
-	  <AssemblyVersion>0.9.0.0</AssemblyVersion>
+	  <AssemblyVersion>0.9.0.1</AssemblyVersion>
     <Product>MemeFlytext</Product>
     <Description>Configure flytext with varying meme effects. /pmeme displays the UI.</Description>
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <ProduceReferenceAssembly>false</ProduceReferenceAssembly>
+    <Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -17,7 +18,16 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <DebugType>full</DebugType>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
+
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <DebugType>pdbonly</DebugType>
   </PropertyGroup>
 

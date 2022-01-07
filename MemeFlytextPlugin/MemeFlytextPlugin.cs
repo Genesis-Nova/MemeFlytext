@@ -2,9 +2,7 @@ using Dalamud.Game.Command;
 using Dalamud.Plugin;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Numerics;
 using Dalamud;
 using Dalamud.Data;
 using Dalamud.Game;
@@ -19,8 +17,6 @@ using Dalamud.Hooking;
 using Dalamud.IoC;
 using Dalamud.Logging;
 using FFXIVClientStructs.FFXIV.Component.GUI;
-using ImGuiNET;
-using Action = Lumina.Excel.GeneratedSheets.Action;
 
 namespace MemeFlytext
 {
@@ -263,6 +259,9 @@ namespace MemeFlytext
                 if (_configuration.DesquishDamageEnabled)
                     val1 = MakeDamageDesquish(val1);
 
+                if (_configuration.RandomDamageEnabled)
+                    val1 = MakeDamageALittleRandom(val1);
+
                 if (_configuration.ZeroDamageEnabled)
                     val1 = MakeDamageZero(val1);
 
@@ -289,19 +288,31 @@ namespace MemeFlytext
         public int MakeDamageDesquish(int originalDamage)
         {
             var newDamage = originalDamage * 5;
+            PluginLog.Information($"Original damage: {originalDamage}, New damage: {newDamage}");
+            return newDamage;
+        }
+
+        public int MakeDamageALittleRandom(int originalDamage)
+        {
+            var rand = new Random();
+            var variance = originalDamage * 0.1;
+            var newDamage = originalDamage + rand.Next((int)variance * -1, (int)variance);
+            PluginLog.Information($"Original damage: {originalDamage}, New damage: {newDamage}");
             return newDamage;
         }
 
         public int MakeDamageZero(int originalDamage)
         {
             var newDamage = originalDamage * 0;
+            PluginLog.Information($"Original damage: {originalDamage}, New damage: {newDamage}");
             return newDamage;
         }
 
         public int MakeDamageCrazy(int originalDamage)
         {
             var rand = new Random();
-            var newDamage = rand.Next(int.MinValue, int.MaxValue);
+            var newDamage = originalDamage + rand.Next(int.MinValue, int.MaxValue);
+            PluginLog.Information($"Original damage: {originalDamage}, New damage: {newDamage}");
             return newDamage;
         }
 

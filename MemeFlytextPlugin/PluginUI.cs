@@ -44,10 +44,14 @@ namespace MemeFlytext
 			if (!SettingsVisible) return;
 
 			ImGui.SetNextWindowSize(new Vector2(300, 400), ImGuiCond.FirstUseEver);
-			if (ImGui.Begin("Meme Flytext Config", ref settingsVisible, ImGuiWindowFlags.AlwaysVerticalScrollbar))
+			if (ImGui.Begin("Meme Flytext Config", ref settingsVisible))
 			{
 
-				if (ImGui.Checkbox("Enable Desquished flytext", ref configuration.DesquishDamageEnabled))
+				if (ImGui.Checkbox("Visually revert the damage nerf introduced in Endwalker", ref configuration.DesquishDamageEnabled))
+				{
+					configuration.Save();
+				}
+				if (ImGui.Checkbox("Enable Random 10% variance", ref configuration.RandomDamageEnabled))
 				{
 					configuration.Save();
 				}

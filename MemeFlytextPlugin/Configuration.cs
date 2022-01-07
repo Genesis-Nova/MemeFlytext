@@ -10,6 +10,7 @@ namespace MemeFlytext
     {
         public int Version { get; set; } = 0;
         public bool DesquishDamageEnabled = false;
+        public bool RandomDamageEnabled = false;
         public bool ZeroDamageEnabled = false;
         public bool CrazyDamageEnabled = false;
 
